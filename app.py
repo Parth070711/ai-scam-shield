@@ -11,8 +11,7 @@ load_dotenv()
 
 # Safely pull the keys from the Streamlit Secrets menu you set up earlier
 GEMINI_API_KEY = st.secrets["GEMINI_API_KEY"]
-MONGO_URI = st.secrets["mongodb+srv://admin:@cluster0.d76ma7u.mongodb.net/?appName=Cluster0
-"]
+MONGO_URI = st.secrets["mongodb+srv://admin:@cluster0.d76ma7u.mongodb.net/?appName=Cluster0"]
 
 # Validate credentials are loaded
 if not GEMINI_API_KEY or not MONGO_URI:
