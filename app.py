@@ -1,12 +1,22 @@
 import streamlit as st
+import os
 from pymongo import MongoClient
 import certifi
 from google import genai
 from google.genai import types
+from dotenv import load_dotenv
 
-# 1. API & DATABASE CONFIGURATION (PASTE YOUR KEYS HERE)
-GEMINI_API_KEY = "AQ.Ab8RN6LgSOxFFfHze-ObKzdBtEp5RhCTpC8NbA9CBytIy0j2mg"
-MONGO_URI = "mongodb+srv://admin:AGre80JaB0lnDJBE@cluster0.d76ma7u.mongodb.net/?appName=Cluster0"
+# Load environment variables
+load_dotenv()
+
+# 1. API & DATABASE CONFIGURATION (FROM ENVIRONMENT VARIABLES)
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+MONGO_URI = os.getenv("MONGO_URI")
+
+# Validate credentials are loaded
+if not GEMINI_API_KEY or not MONGO_URI:
+    st.error("❌ Missing credentials. Set GEMINI_API_KEY and MONGO_URI in environment variables or .env file")
+    st.stop()
 
 # Connect to Gemini Brain
 client = genai.Client(api_key=GEMINI_API_KEY)
